@@ -1,0 +1,44 @@
+# Memory Governance Policy — example configuration
+#
+# This file defines access control, retention, PII handling,
+# and audit rules for your AI agent's memory.
+
+retention:
+  project:
+    max_age_days: 365
+    archive_after_days: 30
+    episode_cap: 10
+  area:
+    max_age_days: null       # never expires
+    episode_cap: 10
+  feedback:
+    max_age_days: null       # never expires
+    episode_cap: 10
+  resource:
+    max_age_days: null
+    episode_cap: 10
+
+access:
+  roles:
+    default:
+      read: [project, area, feedback, resource]
+      write: [project]
+    analyst:
+      read: [project, reference]
+      write: [project]
+    compliance_officer:
+      read: [project, area, feedback, resource]
+      write: []              # read-only for compliance review
+    admin:
+      read: [project, area, feedback, resource]
+      write: [project, area, feedback, resource]
+
+pii:
+  enabled: true
+  redact_emails: true
+  redact_phones: true
+  redact_tokens: true
+  redact_urls: false         # URLs are usually not PII
+
+audit:
+  retention_days: 2555       # ~7 years (banking audit requirement)
