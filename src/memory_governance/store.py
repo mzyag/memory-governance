@@ -184,11 +184,16 @@ updated: {today}
 
         episodes: list[str] = []
         non_episodes: list[str] = []
+        prev_archive_count = 0
+        prev_archive_start: str | None = None
         for line in log_section.strip().splitlines():
             if EPISODE_ENTRY_RE.match(line):
                 episodes.append(line)
             elif line.startswith("> **Archive**"):
-                continue
+                m = re.search(r"\*\*Archive\*\*: (\d+) earlier episodes \((\d{4}-\d{2}-\d{2})", line)
+                if m:
+                    prev_archive_count = int(m.group(1))
+                    prev_archive_start = m.group(2)
             elif line.strip():
                 non_episodes.append(line)
 
@@ -202,11 +207,13 @@ updated: {today}
         partial = sum(1 for e in old if "[partial]" in e)
         failure = len(old) - success - partial
 
+        total_archived = prev_archive_count + len(old)
         dates = [m.group(1) for e in old if (m := re.search(r"\*\*(\d{4}-\d{2}-\d{2})\*\*", e))]
-        date_range = f"{dates[0]} to {dates[-1]}" if dates else "unknown"
+        range_start = prev_archive_start or (dates[0] if dates else "unknown")
+        range_end = dates[-1] if dates else "unknown"
 
         archive_summary = (
-            f"> **Archive**: {len(old)} earlier episodes ({date_range}). "
+            f"> **Archive**: {total_archived} earlier episodes ({range_start} to {range_end}). "
             f"{success} success, {partial} partial, {failure} failure."
         )
 

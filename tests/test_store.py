@@ -41,6 +41,24 @@ def test_episode_cap_triggers_compact(tmp_path):
     assert (tmp_path / "episodes" / "ap-test.archive.md").exists()
 
 
+def test_compact_accumulates_archive_count(tmp_path):
+    from memory_governance.policy import RetentionPolicy
+    policy = Policy(retention={"project": RetentionPolicy(episode_cap=3)})
+    store = MemoryStore(tmp_path, policy)
+    store.create_memory("test", "test", "project")
+
+    for i in range(7):
+        store.write_episode("ap-test.md", f"- **2026-05-{i+1:02d}** [success] task {i}")
+
+    content = (tmp_path / "ap-test.md").read_text()
+    assert "4 earlier episodes" in content
+    assert "2026-05-01 to 2026-05-04" in content
+
+    archive = (tmp_path / "episodes" / "ap-test.archive.md").read_text()
+    archived_episodes = [l for l in archive.splitlines() if l.startswith("- **")]
+    assert len(archived_episodes) == 4
+
+
 def test_filter_by_category(tmp_path):
     store = MemoryStore(tmp_path, Policy())
     store.create_memory("proj", "a project", "project")

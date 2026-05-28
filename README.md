@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-3776ab.svg)](https://www.python.org/downloads/)
 [![MCP](https://img.shields.io/badge/MCP-compatible-green.svg)](https://modelcontextprotocol.io/)
-[![Tests](https://img.shields.io/badge/tests-12%20passed-brightgreen.svg)](#)
+[![Tests](https://img.shields.io/badge/tests-13%20passed-brightgreen.svg)](#)
 
 **Your AI agent remembers your database passwords. Who else can read that memory? When does it get deleted? Can you prove what it knew when it made a decision?**
 
