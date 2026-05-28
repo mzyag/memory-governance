@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-3776ab.svg)](https://www.python.org/downloads/)
 [![MCP](https://img.shields.io/badge/MCP-compatible-green.svg)](https://modelcontextprotocol.io/)
-[![Tests](https://img.shields.io/badge/tests-13%20passed-brightgreen.svg)](#)
+[![CI](https://github.com/mzyag/memory-governance/actions/workflows/ci.yml/badge.svg)](https://github.com/mzyag/memory-governance/actions/workflows/ci.yml)
 
 **你的 AI 助手记住了数据库密码。谁能读取这些记忆？什么时候会被删除？它做决策时知道什么——你能证明吗？**
 
