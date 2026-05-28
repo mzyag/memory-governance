@@ -16,17 +16,17 @@ AI Agent (Claude / Cursor / Copilot)
          │
          ▼
 ┌─────────────────────────┐
-│  memory-governance      │  ← 策略在此强制执行
+│  memory-governance      │  ← policy enforcement
 │  (MCP Server)           │
 │                         │
-│  访问控制 (RBAC)         │
-│  审计日志                │
-│  PII 脱敏               │
-│  Episode 上限 + 去重     │
-│  留存策略                │
+│  Access control (RBAC)  │
+│  Audit logging          │
+│  PII redaction          │
+│  Episode cap + dedup    │
+│  Retention policies     │
 └─────────┬───────────────┘
           ▼
-   记忆存储 (flat files)
+   Memory Storage (flat files)
 ```
 
 ## 为什么需要
