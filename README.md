@@ -44,16 +44,18 @@ These aren't hypothetical risks. They're the reality of running AI agents in any
 
 ### Install
 
+No PyPI install needed — run directly from GitHub with `uvx`:
+
 ```bash
-pip install memory-governance
+uvx --from git+https://github.com/mzyag/memory-governance.git memory-governance
 ```
 
-Or from source:
+Or install from source for development:
 
 ```bash
 git clone https://github.com/mzyag/memory-governance.git
 cd memory-governance
-pip install -e .
+pip install -e ".[dev]"
 ```
 
 ### Configure
@@ -95,7 +97,8 @@ Add to your Claude Code MCP settings (`~/.claude/settings.json`):
 {
   "mcpServers": {
     "memory-governance": {
-      "command": "memory-governance",
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/mzyag/memory-governance.git", "memory-governance"],
       "env": {
         "MG_POLICY_FILE": "/path/to/policy.yaml",
         "MG_MEMORY_DIR": "/path/to/memory",
@@ -114,7 +117,8 @@ Add to `.cursor/mcp.json`:
 {
   "mcpServers": {
     "memory-governance": {
-      "command": "memory-governance",
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/mzyag/memory-governance.git", "memory-governance"],
       "env": {
         "MG_POLICY_FILE": "./policy.yaml",
         "MG_MEMORY_DIR": "./.memory",

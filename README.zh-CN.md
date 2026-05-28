@@ -44,16 +44,18 @@ AI 编码助手已经拥有持久化记忆。这很强大——也很危险：
 
 ### 安装
 
+无需 PyPI 安装——通过 `uvx` 直接从 GitHub 运行：
+
 ```bash
-pip install memory-governance
+uvx --from git+https://github.com/mzyag/memory-governance.git memory-governance
 ```
 
-或从源码安装：
+或从源码安装（开发用）：
 
 ```bash
 git clone https://github.com/mzyag/memory-governance.git
 cd memory-governance
-pip install -e .
+pip install -e ".[dev]"
 ```
 
 ### 配置
@@ -95,7 +97,8 @@ audit:
 {
   "mcpServers": {
     "memory-governance": {
-      "command": "memory-governance",
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/mzyag/memory-governance.git", "memory-governance"],
       "env": {
         "MG_POLICY_FILE": "/path/to/policy.yaml",
         "MG_MEMORY_DIR": "/path/to/memory",
@@ -114,7 +117,8 @@ audit:
 {
   "mcpServers": {
     "memory-governance": {
-      "command": "memory-governance",
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/mzyag/memory-governance.git", "memory-governance"],
       "env": {
         "MG_POLICY_FILE": "./policy.yaml",
         "MG_MEMORY_DIR": "./.memory",
